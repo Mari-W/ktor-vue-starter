@@ -1,0 +1,24 @@
+/.gradle
+/.idea
+/out
+/build
+*.iml
+*.ipr
+*.iws
+
+.DS_Store
+
+src-vue/node_modules
+src-vue/dist
+resources/dist
+
+
+# local env files
+src-vue/.env.local
+src-vue/.env.*.local
+
+# Log files
+src-vue/npm-debug.log*
+src-vue/yarn-debug.log*
+src-vue/yarn-error.log*
+src-vue/pnpm-debug.log*
