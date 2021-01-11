@@ -15,6 +15,7 @@ version = "0.0.1"
 
 application {
     mainClassName = "io.ktor.server.netty.EngineMain"
+    applicationDefaultJvmArgs = listOf("-Dio.ktor.development=true")
 }
 
 repositories {
@@ -42,7 +43,7 @@ sourceSets["test"].resources.srcDirs("testresources")
 val fatJar = task("fatJar", type = Jar::class) {
     manifest {
         attributes["Implementation-Title"] = "Ktor - Vue Fat Jar"
-        attributes["Implementation-Version"] = ktorVersion
+        attributes["Implementation-Version"] = project.version
         attributes["Main-Class"] = "io.ktor.server.netty.EngineMain"
     }
     from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
@@ -59,7 +60,41 @@ val copyDistFolder = tasks.register<Copy>("copyDistFolder") {
     into(file("resources/dist"))
 }
 
+var env = "production"
+
+tasks.processResources {
+    outputs.upToDateWhen { false }
+    filesMatching("*.conf") {
+        when (env) {
+            "development" -> {
+                expand(
+                    "KTOR_ENV" to "dev",
+                    "KTOR_PORT" to "8081",
+                    "KTOR_MODULE" to "build",
+                    "KTOR_AUTORELOAD" to "true"
+                )
+            }
+            "production" -> {
+                expand(
+                    "KTOR_ENV" to "production",
+                    "KTOR_PORT" to "80",
+                    "KTOR_MODULE" to "",
+                    "KTOR_AUTORELOAD" to "false"
+                )
+            }
+        }
+    }
+}
+
+val setDev = tasks.register("setDev") {
+    env = "development"
+}
+
 tasks {
+    "run" {
+        dependsOn(setDev)
+        dependsOn
+    }
     "build" {
         dependsOn(fatJar)
         doLast {
@@ -77,4 +112,3 @@ tasks {
         dependsOn(yarnBuild)
     }
 }
-

@@ -8,6 +8,9 @@ import io.ktor.http.content.*
 import io.ktor.response.*
 import io.ktor.routing.*
 
+
+
+
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
 @Suppress("unused") // Referenced in application.conf
@@ -52,24 +55,28 @@ fun Application.module() {
     }
 
     routing {
-        if (!isDev) {
-            static("/") {
-                resources("dist")
-                resource("/", "dist/index.html")
+        when {
+            isDev -> {
+                // redirect to Vue dev server
+                get("/") {
+                    call.respondRedirect("http://localhost:8080")
+                }
             }
-        } else {
-            get("/") {
-                call.respondText {
-                    "In development mode Vue is served externally on port 8080. In production Ktor would " +
-                            "serve the builded VueJS project here."
+            isProd -> {
+                // serve Vue page with Ktor
+                static("/") {
+                    resources("dist")
+                    resource("/", "dist/index.html")
                 }
             }
         }
 
+        // serve assets
         static("assets") {
             resources("assets")
         }
 
+        // actual API code
         route("/api/") {
             get("/") {
                 call.respond("Example API 0.0.1")
@@ -78,5 +85,6 @@ fun Application.module() {
     }
 }
 
-val Application.env get() = environment.config.propertyOrNull("ktor.deployment.environment")?.getString()
-val Application.isDev get() = env != null && env == "dev"
+val Application.envKind get() = environment.config.property("ktor.environment").getString()
+val Application.isDev get() = envKind == "dev"
+val Application.isProd get() = envKind != "dev"
