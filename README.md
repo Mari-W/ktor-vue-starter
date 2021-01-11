@@ -5,7 +5,7 @@
 
 #### TL;DR Hot reloading in development:
 
-After clone run `yarn --cwd src-vue install` in project root
+After clone run `yarn --cwd src-vue install` in project root.
 
 In root directory of project execute:
 
