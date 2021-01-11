@@ -85,6 +85,6 @@ fun Application.module() {
     }
 }
 
-val Application.envKind get() = environment.config.property("ktor.environment").getString()
-val Application.isDev get() = envKind == "dev"
-val Application.isProd get() = envKind != "dev"
+val Application.envKind get() = environment.config.propertyOrNull("ktor.environment")?.getString()
+val Application.isDev get() = envKind != null && envKind == "dev"
+val Application.isProd get() = envKind != null && envKind != "dev"

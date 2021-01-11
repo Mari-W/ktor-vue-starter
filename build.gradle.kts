@@ -93,7 +93,6 @@ val setDev = tasks.register("setDev") {
 tasks {
     "run" {
         dependsOn(setDev)
-        dependsOn
     }
     "build" {
         dependsOn(fatJar)
