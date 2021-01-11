@@ -11,6 +11,7 @@
 src-vue/node_modules
 src-vue/dist
 resources/dist
+bundle
 
 
 # local env files
