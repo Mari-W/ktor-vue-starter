@@ -3,7 +3,9 @@
 ### Development
 
 
-#### TL;DR Hot reloading in development mode:
+#### TL;DR Hot reloading in development:
+
+After clone run `yarn --cwd src-vue install` in project root
 
 In root directory of project execute:
 
@@ -11,7 +13,7 @@ In root directory of project execute:
 - Terminal 2: `yarn --cwd src-vue serve`
 
 
-This template includes hot reloading for both Ktor and VueJS. For perfect development experience you will need two
+First run `yarn --cwd src-vue install` in project root or `yarn install` in the `src-vue` directory. For hot reloading you will need two
 terminals. In the first terminal we want to run our backend with either
 `./gradlew -t run` or `gradle -t run` when gradle is installed locally. To run the Vue Dev Server either go into
 the `src-vue` directory and run `yarn serve` or execute `yarn --cwd src-vue serve` in the root directory of the project.
