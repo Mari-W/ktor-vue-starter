@@ -27,7 +27,7 @@ In root directory of project execute:
 
 To build a Fat-JAR for production just execute `./gradlew build` or `gradle build` when gradle is installed locally.
 This will include the `yarn build` of the VueJS project. The built page then will be served by Ktor in production.
-To run the bundled jar from the `bundle` folder simply run `java -jar example-0.0.1.jar`
+To run the bundled jar from the `bundle` folder simply run `java -jar bundle/example-0.0.1.jar`. This will not work on your maschine as it wants to use port 80. You can bypass this by running `java -jar bundle/example-0.0.1.jar -port=8080`.
 
 ### Tools
 
