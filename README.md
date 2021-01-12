@@ -37,3 +37,7 @@ To run the bundled jar from the `bundle` folder simply run `java -jar bundle/exa
 - VueJS
 - Gradle
 - Yarn
+
+### ToDo
+
+- Type sharing using the new IR compiler of kotlin and make Vue use TypeScript so it can use IR definitions.
