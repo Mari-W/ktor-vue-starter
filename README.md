@@ -39,4 +39,4 @@ To run the bundled jar from the `bundle` folder simply run `java -jar bundle/exa
 - Yarn
 
 ### More
-A more complex example with Vue & Typescript and IR compiler type sharing between Ktor und Vue see https://github.com/Mari-W/ktor-vue-ir-typesharing
+F0r a more complex example with Vue & Typescript and IR compiler type sharing between Ktor und Vue see https://github.com/Mari-W/ktor-vue-ir-typesharing
