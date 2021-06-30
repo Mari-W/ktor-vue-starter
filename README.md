@@ -38,6 +38,5 @@ To run the bundled jar from the `bundle` folder simply run `java -jar bundle/exa
 - Gradle
 - Yarn
 
-### ToDo
-
-- Type sharing using the new IR compiler of kotlin and make Vue use TypeScript so it can use IR definitions.
+### More
+For a more complex example with Vue & Typescript and IR compiler type sharing between Ktor und Vue see https://github.com/Mari-W/ktor-vue-ir-typesharing
