@@ -11,7 +11,7 @@ class ApplicationTest {
         withTestApplication({ module() }) {
             handleRequest(HttpMethod.Get, "/api/").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
-                assertEquals("Example API 0.0.1", response.content)
+                assertEquals("Some API response", response.content)
             }
         }
     }

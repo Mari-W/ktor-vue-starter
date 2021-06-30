@@ -31,6 +31,8 @@ fun Application.module() {
         anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
     }
 
+
+
     install(CachingHeaders) {
         val noCache = CachingOptions(CacheControl.NoCache(CacheControl.Visibility.Public))
         val lazy = CachingOptions(CacheControl.MaxAge(maxAgeSeconds = 60 * 10)) // 10 minutes
@@ -77,9 +79,9 @@ fun Application.module() {
         }
 
         // actual API code
-        route("/api/") {
+        route("api") {
             get("/") {
-                call.respond("Example API 0.0.1")
+                call.respondText { "Some API response" }
             }
         }
     }

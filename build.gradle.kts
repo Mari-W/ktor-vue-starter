@@ -7,7 +7,7 @@ val logbackVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.5.20"
 }
 
 group = "com.example"
@@ -42,7 +42,7 @@ sourceSets["test"].resources.srcDirs("testresources")
 
 val fatJar = task("fatJar", type = Jar::class) {
     manifest {
-        attributes["Implementation-Title"] = "Ktor - Vue Fat Jar"
+        attributes["Implementation-Title"] = "Ktor & Vue - Fat Jar"
         attributes["Implementation-Version"] = project.version
         attributes["Main-Class"] = "io.ktor.server.netty.EngineMain"
     }
